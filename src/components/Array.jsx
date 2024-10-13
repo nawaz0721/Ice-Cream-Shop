@@ -1,0 +1,118 @@
+import React from "react";
+
+const Array = ({ products }) => {
+  const productsData = [
+    {
+      id: 1,
+      name: "Classic Vanilla Ice Cream",
+      description: "Creamy vanilla ice cream topped with cherry",
+      price: 5.49,
+      rating: 4.9,
+      category: "Canned Ice Cream",
+      imgUrl: product1,
+    },
+    {
+      id: 2,
+      name: "Chocolate Brownie Sundae",
+      description: "Rich chocolate ice cream with chunks of brownie.",
+      price: 5.49,
+      rating: 4.9,
+      category: "Sundaes",
+      imgUrl: product2,
+    },
+    {
+      id: 3,
+      name: "Strawberry Shortcake",
+      description: "Strawberry ice cream layered with shortcake.",
+      price: 5.29,
+      rating: 4.9,
+      category: "Ice Cream Cakes",
+      imgUrl: product3,
+    },
+    {
+      id: 4,
+      name: "Chocolate Fudge Brownie",
+      description: "Rich chocolate ice cream with chunks of fudge brownie.",
+      price: 6.49,
+      rating: 4.8,
+      category: "Ice Cream Cakes",
+      imgUrl: product4,
+    },
+    {
+      id: 5,
+      name: "Mint Chocolate Chip Delight",
+      description: "Cool mint ice cream with dark chocolate chips.",
+      price: 5.99,
+      rating: 4.7,
+      category: "Ice Cream Pints",
+      imgUrl: product5,
+    },
+    {
+      id: 6,
+      name: "Salted Caramel Crunch",
+      description:
+        "Caramel ice cream with a hint of sea salt and crunchy bits.",
+      price: 6.79,
+      rating: 4.6,
+      category: "Ice Cream Pints",
+      imgUrl: product6,
+    },
+    {
+      id: 13,
+      name: "Coconut Paradise",
+      description: "Creamy coconut ice cream topped with shredded coconut.",
+      price: 6.19,
+      rating: 4.5,
+      category: "Ice Cream Pints",
+      imgUrl: product13,
+    },
+    {
+      id: 14,
+      name: "Cookies and Cream",
+      description: "Vanilla ice cream with chunks of chocolate cookies.",
+      price: 5.89,
+      rating: 4.8,
+      category: "Ice Cream Pints",
+      imgUrl: product14,
+    },
+    {
+      id: 15,
+      name: "Raspberry Ripple",
+      description: "Vanilla ice cream swirled with fresh raspberry sauce.",
+      price: 5.79,
+      rating: 4.7,
+      category: "Ice Cream Pints",
+      imgUrl: product15,
+    },
+    {
+      id: 16,
+      name: "Pistachio Dream",
+      description: "Pistachio ice cream with roasted pistachio pieces.",
+      price: 6.39,
+      rating: 4.8,
+      category: "Ice Cream Pints",
+      imgUrl: product16,
+    },
+    {
+      id: 17,
+      name: "Neapolitan Trio",
+      description: "A blend of chocolate, vanilla, and strawberry ice cream.",
+      price: 7.29,
+      rating: 4.9,
+      category: "Ice Cream Cakes",
+      imgUrl: product17,
+    },
+    {
+      id: 18,
+      name: "Coffee Crunch",
+      description: "Coffee ice cream with caramelized sugar bits.",
+      price: 6.49,
+      rating: 4.7,
+      category: "Ice Cream Pints",
+      imgUrl: product18,
+    },
+  ];
+  return products;
+};
+
+export default Array;
