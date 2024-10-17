@@ -23,7 +23,7 @@ const ShoppingCart = () => {
     <>
       <TopSlider image1={heading1} image2={heading2} />
 
-      <div className="shopping-cart flex flex-col lg:flex-row justify-between gap-10 p-6 w-[90%]">
+      <div className="shopping-cart flex flex-col lg:flex-row justify-between gap-10 p-6 w-[90%] mx-auto">
         {/* Cart Items Section */}
         <div className="cart-items flex-1">
           <div className="flex justify-between items-center mb-4">
@@ -33,68 +33,79 @@ const ShoppingCart = () => {
             </div>
           </div>
           <hr className="mb-4" />
-          <div className="flex h-10 gap-10 items-center">
-            <h1 className="font-semibold w-1/3 ">Product Details</h1>
+          <div className="hidden md:flex h-10 gap-10 items-center">
+            <h1 className="font-semibold w-[45%] ">Product Details</h1>
             <h1 className="font-semibold w-20">Price</h1>
-            <h1 className="font-semibold w-32">Quantity</h1>
+            <h1 className="font-semibold w-36">Quantity</h1>
             <h1 className="font-semibold ">Total</h1>
           </div>
           <hr className="mb-4" />
 
           {cartItems.map((item) => (
-            <div key={item.id} className="cart-item gap-14">
-              <div className="flex gap-5 items-center w-3/5 ">
+            <div
+              key={item.id}
+              className="cart-item flex flex-col md:flex-row gap-4 mb-6"
+            >
+              <div className="flex gap-5 items-center w-full md:w-3/5">
                 <img
                   src={item.image}
                   alt={item.name}
                   className="w-24 h-24 object-fill bg-pink-100 p-2"
                 />
-                <div>
+                <div className="flex-1">
                   <h3 className="item-details font-bold text-pink-500">
                     {item.name}
                   </h3>
                 </div>
               </div>
-              <div className="item-price w-20 font-semibold">
-                ${item.price.toFixed(2)}
-              </div>
 
-              <div className="w-36 flex justify-center items-center">
+              <div className="flex justify-between w-full md:w-auto md:gap-8">
+                <div className="item-price font-semibold">
+                  ${item.price.toFixed(2)}
+                </div>
+
+                <div className="w-36 flex justify-center items-center">
+                  <button
+                    className="font-semibold border rounded-l-large px-2 h-8 w-8"
+                    onClick={() => lessQuantityToCart(item.id)}
+                    disabled={item.quantity === 1}
+                  >
+                    -
+                  </button>
+                  <span className="font-semibold border px-2 h-8 w-12 flex justify-center items-center">
+                    {item.quantity}
+                  </span>
+                  <button
+                    className="font-semibold border px-2 rounded-r-large h-8 w-8"
+                    onClick={() => addToCart(item)}
+                  >
+                    +
+                  </button>
+                </div>
+
+                {/* Total Price */}
+                <div className="font-semibold text-center">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </div>
                 <button
-                  className="font-semibold border rounded-l-large px-2 h-8 w-8 "
-                  onClick={() => lessQuantityToCart(item.id)}
-                  disabled={item.quantity === 1}
+                  className="text-red-500 font-bold ml-4 border rounded-full p-3"
+                  onClick={() => removeItemFromCart(item.id)}
                 >
-                  -
-                </button>
-                <span className="font-semibold border px-2 h-8 w-12  flex justify-center items-center">
-                  {item.quantity}
-                </span>
-                <button
-                  className="font-semibold border px-2 rounded-r-large h-8 w-8"
-                  onClick={() => addToCart(item)}
-                >
-                  +
+                  X
                 </button>
               </div>
-              {/* Total Price */}
-              <div className="w-1/5 text-center font-semibold">
-                ${(item.price * item.quantity).toFixed(2)}
-              </div>
-              <button
-                className="text-red-500 font-bold ml-4 border rounded-full p-3"
-                onClick={() => removeItemFromCart(item.id)}
-              >
-                X
-              </button>
             </div>
           ))}
+
           <Link to={"/shop"}>
-            <span className="text-red-700 font-bold">← Continue Shopping</span>
+            <span className="text-red-700 font-bold block mt-4">
+              ← Continue Shopping
+            </span>
           </Link>
         </div>
 
-        <div className="order-summary bg-white shadow-md rounded-large p-6 w-2/6 mx-auto h-1/2">
+        {/* Order Summary */}
+        <div className="order-summary bg-white shadow-md rounded-large p-6 w-full md:w-2/5 lg:w-2/6">
           <h3 className="font-bold text-lg text-center mb-4">Order Summary</h3>
 
           <hr className="mb-4" />
@@ -118,7 +129,7 @@ const ShoppingCart = () => {
             </span>
           </div>
           <Link to={"/checkout"}>
-            <button className="bg-pink-500 hover:bg-pink-600 text-white text-center py-3 rounded-3xl w-full font-semibold flex justify-center items-center">
+            <button className="bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-3xl w-full font-semibold flex justify-center items-center">
               Proceed to checkout <span className="ml-2">→</span>
             </button>
           </Link>

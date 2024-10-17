@@ -91,9 +91,9 @@ const CheckoutForm = () => {
   return (
     <>
       <TopSlider image1={heading1} image2={heading2} />
-      <div className=" flex p-6 w-[85%] gap-5 m-auto  rounded-lg ">
-        <div className="bg-[#7272] w-2/3 h-full  p-4 shadow-md rounded-large">
-          <form action="">
+      <div className="flex flex-col lg:flex-row p-4 md:p-6 w-[90%] m-auto gap-6 rounded-lg">
+        <div className="bg-[#7272] w-full lg:w-2/3 p-4 md:p-6 shadow-md rounded-large">
+          <form onSubmit={sendToWhatsapp}>
             <h2 className="font-bold text-lg mb-4">Billing Address:</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
               <div>
@@ -216,7 +216,6 @@ const CheckoutForm = () => {
               </a>
               <button
                 type="submit"
-                onClick={sendToWhatsapp}
                 className="bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-full my-4 w-full font-semibold flex justify-center items-center"
               >
                 Place Order Now <span className="ml-2">→</span>
@@ -224,7 +223,9 @@ const CheckoutForm = () => {
             </div>
           </form>
         </div>
-        <div className="shadow-md rounded-large p-6 w-1/3 mx-auto h-1/2">
+
+        {/* Order Summary Section */}
+        <div className="shadow-md rounded-large p-6 w-full lg:w-1/3 mx-auto h-full">
           <div className="flex justify-between">
             <h3 className="font-bold text-lg mb-4">Items</h3>
             <span className="font-semibold">Price</span>
@@ -234,14 +235,13 @@ const CheckoutForm = () => {
 
           {cartItems.map((item, index) => (
             <div key={index} className="flex justify-between mb-3">
-              <div className="flex justify-between w-[100%]">
-                <h4 className="font-bold text-lg{">
-                  {item.quantity} x {item.name}
-                </h4>
-                <p className="text-gray-500 text-sm">${item.price}</p>
-              </div>
+              <h4 className="font-bold text-lg">
+                {item.quantity} x {item.name}
+              </h4>
+              <p className="text-gray-500 text-sm">${item.price}</p>
             </div>
           ))}
+
           <hr className="mb-4" />
 
           <div className="flex justify-between mb-4">
@@ -257,6 +257,7 @@ const CheckoutForm = () => {
               ${(itemsPrice + shippingCost).toFixed(2)}
             </span>
           </div>
+
           <Link to={"/cart"}>
             <span className="text-red-700 font-bold">← Back to Cart</span>
           </Link>

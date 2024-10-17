@@ -21,11 +21,13 @@ import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import Blogs from "./pages/Blogs";
 import BlogsDetails from "./pages/BlogsDetails";
+import ScrollToTop from "./components/ScrollToTop.js";
 
 function App() {
   return (
     <BrowserRouter>
       <Navbar />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
