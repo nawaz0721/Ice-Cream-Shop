@@ -56,7 +56,7 @@ const CheckoutForm = () => {
       (itemsPrice + shippingCost).toFixed(2);
 
     window.open(url, "_blank").focus();
-    neg("/");
+    neg("/thankyou");
     setCartItems([]);
   }
 

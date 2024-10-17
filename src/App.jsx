@@ -10,7 +10,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Review from "./pages/Review";
 import Shop from "./pages/Shop";
-import ProductDetail from "./pages/productDetail";
+import ProductDetail from "./pages/productDetail.jsx";
 import ShoppingCart from "./pages/ShoppingCart";
 import CheckOut from "./pages/CheckOut";
 import Thankyou from "./pages/Thankyou";
