@@ -16,7 +16,7 @@ import CheckOut from "./pages/CheckOut";
 import Thankyou from "./pages/Thankyou";
 import WishList from "./pages/WishList";
 import NotFound from "./pages/NotFound";
-import Policy from "./pages/policy";
+import Policy from "./pages/Policy";
 import Terms from "./pages/Terms";
 import Contact from "./pages/Contact";
 import Blogs from "./pages/Blogs";
