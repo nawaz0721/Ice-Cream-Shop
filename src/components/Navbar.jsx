@@ -2,13 +2,18 @@ import { CiSearch } from "react-icons/ci";
 import { BsBag } from "react-icons/bs";
 import { FiMenu } from "react-icons/fi"; // Icon for hamburger menu
 import logo from "../images/Link.png";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "./Button";
+import { CartContext } from "../context/CartContext";
+import { Badge } from "@nextui-org/react";
+import { FaHeart } from "react-icons/fa";
 
 const Navbar = () => {
   const [isPagesDropdownOpen, setIsPagesDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
+
+  const { cartItems, wishListItems } = useContext(CartContext);
 
   const togglePagesDropdown = () => {
     setIsPagesDropdownOpen(!isPagesDropdownOpen);
@@ -56,24 +61,51 @@ const Navbar = () => {
                 <Link to={"/shop"}>
                   <div className="dropdown-item">Shop</div>
                 </Link>
+                <Link to={"/terms"}>
+                  <div className="dropdown-item">Terms & Condition</div>
+                </Link>
+                <Link to={"/policy"}>
+                  <div className="dropdown-item">Privacy Policy</div>
+                </Link>
               </div>
             )}
           </div>
-
-          <div className="nav-item dropdown">Blog</div>
-          <div className="nav-item">FAQ's</div>
+          <Link to={"/blogs"}>
+            <div className="nav-item dropdown">Blog</div>
+          </Link>
+          {/* <div className="nav-item">FAQ's</div> */}
         </nav>
 
         <div className="icons">
-          <CiSearch className="search-icon" />
           <div className="cart-icon-wrapper">
-            <Link to={"/cart"}>
+            {wishListItems.length == 1 ? (
+              <Link to={"/wishList"}>
+                <Badge content={wishListItems.length}>
+                  <FaHeart className=" text-red-600" size={25} />
+                </Badge>
+              </Link>
+            ) : (
+              <Link to={"/wishList"}>
+                <FaHeart className=" text-red-600" size={25} />
+              </Link>
+            )}
+          </div>
+
+          <div className="cart-icon-wrapper">
+            {!cartItems.length == 0 ? (
+              <Link to={"/cart"}>
+                <Badge content={cartItems.length}>
+                  <BsBag className="cart-icon" />
+                </Badge>
+              </Link>
+            ) : (
               <BsBag className="cart-icon" />
-            </Link>
+            )}
           </div>
         </div>
-
-        <Button text={"Contact Us"} css={"contact-btn"} />
+        <Link to={"/contact"}>
+          <Button text={"Contact Us"} css={"contact-btn"} />
+        </Link>
       </div>
     </header>
   );

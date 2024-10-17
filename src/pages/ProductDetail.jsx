@@ -8,6 +8,10 @@ import product3 from "../images/Figure → classic-image3.png.png";
 import product4 from "../images/Figure → classic-image4.png.png";
 import product5 from "../images/Figure → seller-image1.png.png";
 import product6 from "../images/Figure → seller-image2.png.png";
+import product7 from "../images/perfect-image1.jpg.png";
+import product8 from "../images/vegan-image1.jpg.png";
+import product9 from "../images/vegan-image2.jpg.png";
+import product10 from "../images/vegan-image3.jpg.png";
 import product13 from "../images/popular-image1.png.png";
 import product14 from "../images/popular-image2.png.png";
 import product15 from "../images/popular-image3.png.png";
@@ -18,6 +22,7 @@ import heading from "../images/Related Products.png";
 import { useParams } from "react-router";
 import ProductsTabs from "../components/ProductsTabs";
 import ProductSlider from "../components/ProductSlider";
+import NotFound from "./NotFound";
 
 const ProductDetail = () => {
   const products = [
@@ -77,6 +82,43 @@ const ProductDetail = () => {
       image: product6,
     },
     {
+      id: 7,
+      name: "Classic Flavors",
+      description:
+        "Caramel ice cream with a hint of sea salt and crunchy bits.",
+      price: 7.34,
+      rating: 5.0,
+      category: "Canned Ice Cream",
+      image: product7,
+    },
+    {
+      id: 8,
+      name: "Seasonal Specials",
+      description: "Creamy coconut ice cream topped with shredded coconut.",
+      price: 5.94,
+      rating: 4.3,
+      category: "Sundaes",
+      image: product8,
+    },
+    {
+      id: 9,
+      name: "Gelato Cake",
+      description: "A blend of chocolate, vanilla, and strawberry ice cream.",
+      price: 6.01,
+      rating: 4.6,
+      category: "Ice Cream Cakes",
+      image: product9,
+    },
+    {
+      id: 10,
+      name: "Gelato Pints",
+      description: "Vanilla ice cream with chunks of chocolate cookies.",
+      price: 7.93,
+      rating: 4,
+      category: "Ice Cream Pints",
+      image: product10,
+    },
+    {
       id: 13,
       name: "Coconut Paradise",
       description: "Creamy coconut ice cream topped with shredded coconut.",
@@ -132,11 +174,11 @@ const ProductDetail = () => {
     },
   ];
 
-  const { id } = useParams(); // Get product ID from route params
-  const product = products.find((p) => p.id === parseInt(id)); // Find the product by ID
+  const { id } = useParams();
+  const product = products.find((p) => p.id === parseInt(id));
 
   if (!product) {
-    return <p>Product not found!</p>;
+    return <NotFound />;
   }
 
   return (

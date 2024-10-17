@@ -7,6 +7,10 @@ import product3 from "../images/Figure → classic-image3.png.png";
 import product4 from "../images/Figure → classic-image4.png.png";
 import product5 from "../images/Figure → seller-image1.png.png";
 import product6 from "../images/Figure → seller-image2.png.png";
+import product7 from "../images/perfect-image1.jpg.png";
+import product8 from "../images/vegan-image1.jpg.png";
+import product9 from "../images/vegan-image2.jpg.png";
+import product10 from "../images/vegan-image3.jpg.png";
 import product13 from "../images/popular-image1.png.png";
 import product14 from "../images/popular-image2.png.png";
 import product15 from "../images/popular-image3.png.png";
@@ -72,6 +76,42 @@ const productsData = [
     rating: 4.6,
     category: "Ice Cream Pints",
     imgUrl: product6,
+  },
+  {
+    id: 7,
+    name: "Classic Flavors",
+    description: "Caramel ice cream with a hint of sea salt and crunchy bits.",
+    price: 7.34,
+    rating: 5.0,
+    category: "Canned Ice Cream",
+    imgUrl: product7,
+  },
+  {
+    id: 8,
+    name: "Seasonal Specials",
+    description: "Creamy coconut ice cream topped with shredded coconut.",
+    price: 5.94,
+    rating: 4.3,
+    category: "Sundaes",
+    imgUrl: product8,
+  },
+  {
+    id: 9,
+    name: "Gelato Cake",
+    description: "A blend of chocolate, vanilla, and strawberry ice cream.",
+    price: 6.01,
+    rating: 4.6,
+    category: "Ice Cream Cakes",
+    imgUrl: product9,
+  },
+  {
+    id: 10,
+    name: "Gelato Pints",
+    description: "Vanilla ice cream with chunks of chocolate cookies.",
+    price: 7.93,
+    rating: 4,
+    category: "Ice Cream Pints",
+    imgUrl: product10,
   },
   {
     id: 13,

@@ -5,11 +5,26 @@ import { FaFacebook } from "react-icons/fa";
 import { AiFillInstagram } from "react-icons/ai";
 import { FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { GoMoveToTop } from "react-icons/go";
+import { Button } from "@nextui-org/react";
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Smooth scroll effect
+    });
+  };
+
   return (
     <footer className="footer">
       <div className="footer-container">
+        <Button
+          className="fixed bottom-9 left-4 z-20 text-white text-3xl bg-pink-500 p-2 rounded"
+          onClick={scrollToTop}
+        >
+          <GoMoveToTop />
+        </Button>
         <div className="footer-section logo-section">
           <img src={logo} alt="Icy Tales Logo" className="footer-logo" />
         </div>
@@ -48,12 +63,12 @@ const Footer = () => {
             <span className="font-bold">Address</span>
           </h4>
           <p className="text-center">Shah Faisal Colony, Karachi</p>
-          <p className="text-center">Phone: +923491818593</p>
+          <p className="text-center">Phone: +923201223272</p>
           <h4 className="flex gap-4 items-center justify-center my-2">
             <HiOutlineMailOpen size={30} />
             <span className="font-bold">Email</span>
           </h4>
-          <p className="text-center">icecream@gmail.com</p>
+          <p className="text-center">icetales@gmail.com</p>
         </div>
 
         <div className="footer-section social-media text-center">

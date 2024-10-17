@@ -3,28 +3,30 @@ import images2 from "../images/perfect-image2.jpg.png";
 import images3 from "../images/perfect-image3.jpg.png";
 import images4 from "../images/perfect-image4.jpg.png";
 import heading from "../images/Find Your Perfect Gelato.png";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 const GelatoCategories = () => {
   const categories = [
     {
+      id: 7,
       name: "Classic Flavors",
       image: images1,
-      link: "/classic-flavors",
     },
     {
+      id: 8,
       name: "Seasonal Specials",
       image: images2,
-      link: "/seasonal-specials",
     },
     {
+      id: 9,
       name: "Gelato Cakes",
       image: images3,
-      link: "/gelato-cakes",
     },
     {
+      id: 10,
       name: "Gelato Pints",
       image: images4,
-      link: "/gelato-pints",
     },
   ];
 
@@ -47,9 +49,10 @@ const GelatoCategories = () => {
             />
             <div className="category-info">
               <h2>{category.name}</h2>
-              <a href={category.link} className="category-button">
-                <span>&#10132;</span>
-              </a>
+              <Link to={`/shop/${category.id}`}>
+                <span className="category-button">&#10132;</span>
+              </Link>
+              {/* <a href={category.link} className="category-button"></a> */}
             </div>
           </div>
         ))}

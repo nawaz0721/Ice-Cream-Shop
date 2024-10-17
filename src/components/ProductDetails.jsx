@@ -1,15 +1,31 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
+import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
 const ProductDetails = ({ product }) => {
-  const [quantity, setQuantity] = useState(1);
   const navigate = useNavigate();
+  const {
+    addToCart,
+    isItemAdded,
+    lessQuantityToCart,
+    addToWishList,
+    isItemAddedToWishList,
+  } = useContext(CartContext);
 
   const { name, description, price, image, rating } = product;
+  const productInCart = isItemAdded(product.id) || { quantity: 0 }; // Handle case when product is not yet in cart
+  const quantity = productInCart.quantity;
 
-  const increaseQuantity = () => setQuantity(quantity + 1);
+  const increaseQuantity = () => {
+    addToCart(product);
+  };
+
   const decreaseQuantity = () => {
-    if (quantity > 1) setQuantity(quantity - 1);
+    if (quantity > 1) {
+      lessQuantityToCart(product.id);
+    }
   };
 
   return (
@@ -35,6 +51,7 @@ const ProductDetails = ({ product }) => {
             <button
               className="px-4 py-2 bg-gray-300 text-gray-700 rounded"
               onClick={decreaseQuantity}
+              disabled={quantity === 0}
             >
               -
             </button>
@@ -47,12 +64,29 @@ const ProductDetails = ({ product }) => {
             </button>
           </div>
 
-          <button className="w-1/2 py-3 bg-pink-500 text-white rounded-lg mb-4">
-            Add to Cart
-          </button>
+          <Link to={"/cart"}>
+            <button className="w-1/2 py-3 bg-pink-500 text-white rounded-lg mb-4">
+              Buy Now
+            </button>
+          </Link>
 
-          <div className="flex justify-end text-pink-500">
-            {/* <button className="underline">Add to wishlist</button> */}
+          <div className="flex justify-between text-pink-500">
+            <button
+              className="underline"
+              onClick={() => {
+                addToWishList(product);
+              }}
+            >
+              {isItemAddedToWishList(product.id) ? (
+                <span>Remove from wishlist</span>
+              ) : (
+                <span className="flex items-center">
+                  <FaHeart className="text-pink-700" size={18} /> Add to
+                  Wishlist
+                </span>
+              )}
+            </button>
+
             <button
               className="underline"
               onClick={() => {

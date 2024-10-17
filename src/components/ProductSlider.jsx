@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import Slider from "react-slick";
 import {
   FaHeart,
@@ -15,6 +15,8 @@ import product16 from "../images/flover-image1.png.png";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Button from "./Button";
+import { CartContext } from "../context/CartContext";
+import { Link, useParams } from "react-router-dom";
 
 // Sample products array
 const products = [
@@ -119,12 +121,15 @@ const ProductSlider = ({ mainheading, subtext }) => {
     ],
   };
 
+  const { addToCart, isItemAdded, addToWishList, isItemAddedToWishList } =
+    useContext(CartContext);
+
+  const { id } = useParams();
+
   return (
     <div className=" ">
-      {/* Slider Title */}
       <div className="text-center mb-12">
         <img
-          // src={heading}
           src={mainheading}
           alt="Popular Products"
           className=" my-6 mx-auto w-2/3 lg:w-1/3 mb-4"
@@ -132,7 +137,6 @@ const ProductSlider = ({ mainheading, subtext }) => {
         <p className="text-gray-600 text-lg">{subtext}</p>
       </div>
 
-      {/* Product Cards */}
       <div className="">
         <Slider {...settings}>
           {products.map((product) => (
@@ -140,18 +144,36 @@ const ProductSlider = ({ mainheading, subtext }) => {
               key={product.id}
               className="bg-white rounded-xl shadow-lg transition-transform hover:scale-105 duration-300 mx-4 p-6"
             >
-              {/* Product Image Section */}
-              <div className="relative bg-pink-100 border border-pink-200 h-60 rounded-lg overflow-hidden mb-6">
-                <button className="absolute top-2 right-2 p-2 bg-red-500 hover:bg-gray-200 text-white hover:text-red-500 rounded-full transition-colors">
-                  <FaHeart size={20} />
+              <div className="relative bg-pink-200 border border-pink-200 h-60 rounded-lg overflow-hidden mb-6">
+                <button
+                  className="absolute top-2 right-2 p-2 rounded-full "
+                  onClick={() => {
+                    addToWishList(product);
+                  }}
+                >
+                  {isItemAddedToWishList(product.id) ? (
+                    // <Badge content={1}>
+                    <FaHeart
+                      size={30}
+                      className="absolute top-2 right-2 text-red-600"
+                    />
+                  ) : (
+                    // </Badge>
+                    <FaHeart
+                      size={30}
+                      className="absolute top-2 right-2   text-white"
+                    />
+                  )}
                 </button>
-                <div className="flex justify-center items-center h-full">
-                  <img
-                    src={product.image}
-                    alt={product.name}
-                    className="h-full object-cover"
-                  />
-                </div>
+                <Link to={`/shop/${product.id}`}>
+                  <div className="flex justify-center items-center h-full">
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className="h-full object-cover"
+                    />
+                  </div>
+                </Link>
               </div>
 
               {/* Product Info Section */}
@@ -189,10 +211,16 @@ const ProductSlider = ({ mainheading, subtext }) => {
 
                 {/* Add to Cart Button */}
                 <div className="w-auto m-auto flex justify-center mt-4">
-                  <Button
-                    text={"Add to Cart"}
-                    css="bg-pink-500 text-white px-4 py-2 rounded-full hover:bg-pink-600 transition-all flex items-center justify-center"
-                  />
+                  <button
+                    className="w-1/2 py-3 bg-pink-500 text-white rounded-lg mb-4"
+                    onClick={() => {
+                      addToCart(product);
+                    }}
+                  >
+                    {isItemAdded(product.id)
+                      ? `Added (${isItemAdded(product.id).quantity})`
+                      : `Add to Cart`}
+                  </button>
                 </div>
               </div>
             </div>
